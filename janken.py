@@ -1,8 +1,7 @@
 import random
 h_list = ["グー","チョキ","パー"]
 class Your_Hand:
-    def __init__(self):
-            
+    def __init__(self):  
         n = int(input("グーは0,チョキは1,パーは2を入力してください"))
         self.n = n
         self.hand = h_list[self.n]
@@ -27,8 +26,9 @@ def game(h1,h2):
     else:
         print("ジャンケンポイ")
         print("あなた　コンピューター")
-        print("{0} {1}".format(h1.hand,h2.hand))お
+        print("{0} {1}".format(h1.hand,h2.hand))
         print("あなたの負けです")
+        
 while True:
     m = "qで終了、それ以外のキーでplay"
     response = input(m)

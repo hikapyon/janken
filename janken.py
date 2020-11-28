@@ -1,5 +1,6 @@
 import random
 h_list = ["グー","チョキ","パー"]
+wins = False
 class Your_Hand:
     def __init__(self):  
         n = int(input("グーは0,チョキは1,パーは2を入力してください"))
@@ -12,7 +13,9 @@ class Cp_Hand:
         self.n = n
         self.hand = h_list[self.n]
 
-def game(h1,h2):
+def game():
+    h1= Your_Hand()
+    h2 = Cp_Hand()
     if h1.n == h2.n:
         print("ジャンケンポイ")
         print("あなた　コンピューター")
@@ -23,21 +26,43 @@ def game(h1,h2):
         print("あなた　コンピューター")
         print("{0} {1}".format(h1.hand,h2.hand))
         print("あなたの勝ちです")
+        wins = True
     else:
         print("ジャンケンポイ")
         print("あなた　コンピューター")
         print("{0} {1}".format(h1.hand,h2.hand))
         print("あなたの負けです")
-        
+        wins = True
+
+def game_tie():
+    h1= Your_Hand()
+    h2 = Cp_Hand()
+    if h1.n == h2.n:
+        print("あいこでしょ")
+        print("あなた　コンピューター")
+        print("{0} {1}".format(h1.hand,h2.hand))
+        print("あいこです")
+    elif((h1.n == 0)and(h2.n ==1))or((h1.n == 1)and(h2.n ==2))or((h1.n == 2)and(h2.n ==0)):
+        print("あいこでしょ")
+        print("あなた　コンピューター")
+        print("{0} {1}".format(h1.hand,h2.hand))
+        print("あなたの勝ちです")
+        wins = True
+    else:
+        print("ジャンケンポイ")
+        print("あなた　コンピューター")
+        print("{0} {1}".format(h1.hand,h2.hand))
+        print("あなたの負けです")
+        wins = True
 while True:
     m = "qで終了、それ以外のキーでplay"
     response = input(m)
     if response == 'q':
         break
     try:
-        your_hand = Your_Hand()
-        cp_hand = Cp_Hand()
-        game(your_hand,cp_hand)
+        game()
+        while wins == False:
+            game_tie()
     except IndexError:
         print('0,1,2以外が入力されました、0,1,2のみを入力してください')
         pass

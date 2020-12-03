@@ -1,6 +1,9 @@
 import random
 h_list = ["グー","チョキ","パー"]
 wins = False
+w_com = "あなたの勝ちです"
+l_com = "あなたの負けです"
+t_com = "あいこです"
 class Your_Hand:
     def __init__(self):  
         n = int(input("グーは0,チョキは1,パーは2を入力してください"))
@@ -12,47 +15,44 @@ class Cp_Hand:
         n = random.randint(0,2)
         self.n = n
         self.hand = h_list[self.n]
+def result(a,b):
+    print("ジャンケンポイ")
+    print("あなた　コンピューター")
+    print("{0} {1}".format(a.hand,b.hand))
+
+def result_tie(a,b):
+    print("あいこでしょ")
+    print("あなた　コンピューター")
+    print("{0} {1}".format(a.hand,b.hand))
 
 def game():
     h1= Your_Hand()
     h2 = Cp_Hand()
     if h1.n == h2.n:
-        print("ジャンケンポイ")
-        print("あなた　コンピューター")
-        print("{0} {1}".format(h1.hand,h2.hand))
-        print("あいこです")
+        result(h1,h2)
+        print(t_com)
     elif((h1.n == 0)and(h2.n ==1))or((h1.n == 1)and(h2.n ==2))or((h1.n == 2)and(h2.n ==0)):
-        print("ジャンケンポイ")
-        print("あなた　コンピューター")
-        print("{0} {1}".format(h1.hand,h2.hand))
-        print("あなたの勝ちです")
+        result(h1,h2)
+        print(w_com)
         wins = True
     else:
-        print("ジャンケンポイ")
-        print("あなた　コンピューター")
-        print("{0} {1}".format(h1.hand,h2.hand))
-        print("あなたの負けです")
+        result(h1,h2)
+        print(l_com)
         wins = True
 
 def game_tie():
     h1= Your_Hand()
     h2 = Cp_Hand()
     if h1.n == h2.n:
-        print("あいこでしょ")
-        print("あなた　コンピューター")
-        print("{0} {1}".format(h1.hand,h2.hand))
-        print("あいこです")
+        result_tie(h1,h2)
+        print(t_com)
     elif((h1.n == 0)and(h2.n ==1))or((h1.n == 1)and(h2.n ==2))or((h1.n == 2)and(h2.n ==0)):
-        print("あいこでしょ")
-        print("あなた　コンピューター")
-        print("{0} {1}".format(h1.hand,h2.hand))
-        print("あなたの勝ちです")
+        result_tie(h1,h2)
         wins = True
+        print(w_com)
     else:
-        print("ジャンケンポイ")
-        print("あなた　コンピューター")
-        print("{0} {1}".format(h1.hand,h2.hand))
-        print("あなたの負けです")
+        result_tie(h1,h2)
+        print(l_com)
         wins = True
 while True:
     m = "qで終了、それ以外のキーでplay"
